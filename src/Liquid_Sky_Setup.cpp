@@ -7,6 +7,8 @@ using namespace std;
 
 int y(0);
 
+void ati();
+
 void download();
 
 void graphics();
@@ -38,6 +40,13 @@ void intel()
     system("sudo apt-get install libva1 i965-va-driver libva-intel-vaapi-driver vainfo");
 }
 
+void amd()
+{
+    system("sudo apt-get install linux-headers-generic fglrx fglrx-amdcccle fglrx-updates fglrx-amdcccle-updates");
+    
+    system("sudo fglrxinfo");
+}
+
 void other()
 {
     system("sudo apt-get install mesa-vdpau-drivers");
@@ -51,7 +60,8 @@ void graphics()
             << "Does your computer use Nvidia or Intel for graphics?" << endl
                 << "1: Nvidia" << endl
                     << "2: Intel" << endl
-                        << "3: Neither or Don't Know" << endl;
+                        << "3: Ati" << endl
+                            << "4: Neither or Don't Know" << endl;
     
     cin >> x;
     
@@ -67,7 +77,7 @@ void graphics()
     
     if (x == 3)
     {
-        other();
+        ati();
     }
 }
 
@@ -112,7 +122,7 @@ void install()
 {
     system("sudo apt-get install mesa-utils");
     
-    system("sudo glxinfo >> GLXInfo.txt");
+    system("sudo glxinfo");
     
-    system("ln -s /home/Downloads/Ubuntu_10.04/Liquid_Sky_Setup /usr/bin/liquidsky");
+    system("sudo ln -s /home/Downloads/Ubuntu_10.04/Liquid_Sky_Setup /usr/bin/liquidsky");
 }
